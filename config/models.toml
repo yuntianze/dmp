@@ -1,0 +1,26 @@
+# ML 模型配置
+
+[primary_model]
+name = "fraud_detector_v1"
+path = "models/fraud_v1.onnx"
+version = "v2024.01.15"
+enabled = true
+weight = 0.7
+
+[secondary_model]
+name = "risk_scorer_v1"  
+path = "models/risk_v1.onnx"
+version = "v2024.01.10"
+enabled = true
+weight = 0.3
+
+[inference]
+batch_size = 32
+timeout_ms = 100
+threads = 2
+provider = "CPU"  # CPU, CUDA, TensorRT, OpenVINO
+
+[features]
+input_size = 64
+expected_types = ["float32"]
+preprocessing = true

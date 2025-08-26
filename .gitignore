@@ -1,0 +1,35 @@
+# 构建目录
+build*/
+*.o
+*.so
+*.a
+
+# IDE
+.vscode/
+.idea/
+*.user
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+logs/
+*.log
+
+# 临时文件
+tmp/
+temp/
+
+# 配置文件中的敏感信息
+config/local_*
+.env
+
+# 模型文件（可能很大）
+models/*.onnx
+models/*.pb
+models/*.bin
+
+# 数据文件
+data/private_*
+data/sensitive_*

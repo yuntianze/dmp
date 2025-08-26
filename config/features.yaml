@@ -1,0 +1,53 @@
+# DMP 特征工程配置
+
+feature_groups:
+  basic:
+    - name: "transaction_amount"
+      type: "numeric"
+      normalization: "log_scale"
+      
+    - name: "merchant_category"
+      type: "categorical"
+      encoding: "one_hot"
+      
+    - name: "hour_of_day"
+      type: "cyclic"
+      period: 24
+
+  temporal:
+    - name: "account_age_days"
+      type: "numeric"
+      bucket_size: 30
+      
+    - name: "days_since_last_transaction"
+      type: "numeric"
+      max_value: 365
+
+  aggregated:
+    - name: "hourly_transaction_count"
+      window: "1h"
+      aggregation: "count"
+      
+    - name: "daily_amount_sum"
+      window: "24h"
+      aggregation: "sum"
+      
+    - name: "weekly_avg_amount"
+      window: "7d"
+      aggregation: "mean"
+
+cache_config:
+  levels:
+    l1_thread_local: 
+      size_mb: 16
+      ttl_seconds: 60
+      
+    l2_process_shared:
+      size_mb: 256
+      ttl_seconds: 300
+      
+    l3_redis:
+      size_mb: 1024
+      ttl_seconds: 3600
+      host: "localhost"
+      port: 6379

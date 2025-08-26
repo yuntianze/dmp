@@ -1,0 +1,10 @@
+# 可信IP地址
+127.0.0.1
+::1
+
+# 可信商户
+MERCH_VERIFIED_001
+MERCH_PARTNER_*
+
+# 可信设备
+df_trusted_*

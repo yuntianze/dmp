@@ -1,0 +1,33 @@
+{
+  "version": "v1.0.0",
+  "rules": [
+    {
+      "id": "RULE_HIGH_AMOUNT",
+      "name": "高额交易规则",
+      "expression": "amount > 10000 and merchant_risk > 0.7",
+      "weight": 20.0,
+      "enabled": true,
+      "description": "检测高金额且高风险商户的交易"
+    },
+    {
+      "id": "RULE_VELOCITY_CHECK",
+      "name": "交易频率检查",
+      "expression": "hourly_count > 10 and amount_sum > 50000",
+      "weight": 15.0,
+      "enabled": true,
+      "description": "检测异常高频交易"
+    },
+    {
+      "id": "RULE_BLACKLIST_IP",
+      "name": "IP黑名单检查",
+      "expression": "ip_blacklist_match > 0",
+      "weight": 50.0,
+      "enabled": true,
+      "description": "检测黑名单IP地址"
+    }
+  ],
+  "thresholds": {
+    "approve_threshold": 30.0,
+    "review_threshold": 70.0
+  }
+}

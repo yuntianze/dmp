@@ -1,0 +1,17 @@
+---
+description: Coding rules for DMP prototype
+globs:
+- Language: C++20, clang or gcc with -O3 -march=native -flto in Release.
+- Style: Google C++ style (clang-format).
+- Performance target: P99 ≤ 50ms end-to-end per request @ baseline QPS (specify in tests).
+- HTTP framework: drogon (multi-threaded) for speed & simplicity.
+- JSON: simdjson for parsing hot path; nlohmann/json for config.
+- Cache: local sharded LRU (in-process) + Redis (sw::redis++).
+- Rules: ExprTk expression engine for MVP; keep clean interface to swap in Rete later.
+- Matching: small-set use std::regex; large-set pre-compile with Hyperscan (optional).
+- Logging: spdlog; Metrics: prometheus-cpp; Config: toml++.
+- Observability first: timers for each stage; expose /metrics.
+- Unit tests: GoogleTest; Benchmarks: Google Benchmark; Load: wrk.
+alwaysApply: false
+---
+

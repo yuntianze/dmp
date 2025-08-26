@@ -1,0 +1,31 @@
+# DMP 风控系统服务器配置
+
+[server]
+host = "0.0.0.0"
+port = 8080
+threads = 8
+keep_alive_timeout = 60
+max_connections = 10000
+
+[performance]
+# SLO 目标
+target_p99_ms = 50
+target_qps = 10000
+max_memory_gb = 4
+max_cpu_percent = 80
+
+[features]
+enable_cache = true
+cache_size_mb = 512
+cache_ttl_seconds = 300
+
+[logging]
+level = "info"
+file = "/var/log/dmp/server.log"
+max_size_mb = 100
+max_files = 10
+
+[monitoring]
+enable_prometheus = true
+prometheus_port = 9090
+metrics_interval_seconds = 1
