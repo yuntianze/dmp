@@ -3,6 +3,9 @@ description: Coding rules for DMP prototype
 globs:
 - Language: C++20, clang or gcc with -O3 -march=native -flto in Release.
 - Style: Google C++ style (clang-format).
+- Comments: ALL code comments MUST be in English, following Google C++ Style Guide.
+- Documentation: Function/class comments use /** */ style; inline comments use //.
+- Comment style: Brief, clear, and professional English; explain WHY not WHAT.
 - Performance target: P99 ≤ 50ms end-to-end per request @ baseline QPS (specify in tests).
 - HTTP framework: drogon (multi-threaded) for speed & simplicity.
 - JSON: simdjson for parsing hot path; nlohmann/json for config.
@@ -14,4 +17,66 @@ globs:
 - Unit tests: GoogleTest; Benchmarks: Google Benchmark; Load: wrk.
 alwaysApply: false
 ---
+
+## Google C++ Comment Style Guidelines
+
+### File Headers
+```cpp
+/**
+ * @file transaction.hpp
+ * @brief Core transaction data structures for DMP risk control system
+ * @author DMP Team
+ * @date 2024
+ */
+```
+
+### Class Comments
+```cpp
+/**
+ * @brief High-performance transaction request parser using simdjson
+ * 
+ * This class provides zero-copy JSON parsing for incoming transaction requests,
+ * optimized for low-latency risk control decisions. Uses SIMD instructions
+ * for maximum throughput.
+ */
+class TransactionParser {
+```
+
+### Function Comments
+```cpp
+/**
+ * @brief Parses JSON transaction data with validation
+ * @param json_data Raw JSON string from HTTP request
+ * @param[out] transaction Parsed transaction object
+ * @return Result<void> Success or error with details
+ * 
+ * Performance: Target < 0.5ms for typical 2KB request
+ * Thread-safe: Yes, uses thread-local parser instances
+ */
+Result<void> parseTransaction(const std::string& json_data, Transaction& transaction);
+```
+
+### Inline Comments
+```cpp
+// Use thread-local storage to avoid parser allocation overhead
+thread_local simdjson::dom::parser parser;
+
+// Fast path: check cache before expensive computation
+if (auto cached = feature_cache.get(key); cached.has_value()) {
+    return *cached;  // Cache hit - avoid feature extraction
+}
+```
+
+### Variable Comments
+```cpp
+static constexpr size_t kMaxRequestSize = 8192;  // 8KB limit for DoS protection
+static constexpr float kP99LatencyTarget = 50.0f;  // milliseconds (SLA requirement)
+```
+
+### TODO Comments
+```cpp
+// TODO(username): Implement batch inference for better GPU utilization
+// BUG(username): Race condition in cache eviction under high load
+// FIXME: Memory leak in feature extraction pipeline
+```
 
