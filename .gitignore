@@ -1,19 +1,50 @@
-# 构建目录
+# ============================================================================
+# DMP 风控项目 .gitignore
+# ============================================================================
+
+# 构建目录和产物
 build*/
 *.o
 *.so
 *.a
+*.slo
+*.lo
+*.obj
+*.lai
+*.la
+*.lib
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
 
-# IDE
+# 预编译头文件
+*.gch
+*.pch
+
+# 调试和链接文件
+*.ilk
+*.pdb
+*.dwo
+*.d
+
+# Fortran 模块文件
+*.mod
+*.smod
+
+# IDE 和编辑器
 .vscode/
 .idea/
 *.user
+*.swp
+*.swo
 
 # 系统文件
 .DS_Store
 Thumbs.db
 
-# 日志
+# 日志文件
 logs/
 *.log
 
@@ -33,3 +64,7 @@ models/*.bin
 # 数据文件
 data/private_*
 data/sensitive_*
+
+# 依赖和缓存
+node_modules/
+.cache/
