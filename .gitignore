@@ -45,7 +45,8 @@ build*/
 Thumbs.db
 
 # 日志文件
-logs/
+logs/*.log
+logs/*.log.*
 *.log
 
 # 临时文件
@@ -68,3 +69,26 @@ data/sensitive_*
 # 依赖和缓存
 node_modules/
 .cache/
+
+# 测试文件
+test_*
+*_test
+minimal_test*
+
+# 编译器和工具生成的文件
+compile_commands.json
+.clangd/
+.ccls-cache/
+
+# CMake 生成的文件
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+CTestTestfile.cmake
+DartConfiguration.tcl
+Testing/
+
+# 第三方库源码（不提交源码，只提交编译后的库）
+third_party/src/
+third_party/build/
