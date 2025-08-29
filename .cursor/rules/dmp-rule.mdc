@@ -15,6 +15,7 @@ globs:
 - Logging: spdlog; Metrics: prometheus-cpp; Config: toml++.
 - Observability first: timers for each stage; expose /metrics.
 - Unit tests: GoogleTest; Benchmarks: Google Benchmark; Load: wrk.
+- Git workflow: DO NOT auto-commit changes to git. User will manually commit when appropriate.
 alwaysApply: false
 ---
 
@@ -78,5 +79,48 @@ static constexpr float kP99LatencyTarget = 50.0f;  // milliseconds (SLA requirem
 // TODO(username): Implement batch inference for better GPU utilization
 // BUG(username): Race condition in cache eviction under high load
 // FIXME: Memory leak in feature extraction pipeline
+```
+
+## Git Workflow Guidelines
+
+### Manual Git Control
+- **NO auto-commit**: Cursor AI should never automatically commit changes to git
+- **NO auto-push**: Never push changes to remote repositories automatically
+- **User discretion**: User will decide when and how to commit changes
+- **Focus on code**: AI should focus on code generation, testing, and optimization only
+
+### Git Commit Best Practices
+When making git commits, follow these guidelines:
+
+1. **Commit message format**: Use concise English descriptions
+2. **Prefix conventions**:
+   - `feat:` for new features and functionality
+   - `fix:` for bug fixes and corrections
+   - `docs:` for documentation changes
+   - `refactor:` for code refactoring without functional changes
+   - `perf:` for performance improvements
+   - `test:` for adding or updating tests
+   - `chore:` for maintenance tasks
+
+### Examples
+```bash
+# Good commit messages:
+git commit -m "feat: add transaction risk scoring algorithm"
+git commit -m "fix: resolve memory leak in feature cache"
+git commit -m "perf: optimize JSON parsing for large requests"
+git commit -m "docs: update API documentation for v2.0"
+
+# Bad commit messages:
+git commit -m "updates"
+git commit -m "修复了一个bug"
+git commit -m "WIP"
+```
+
+### Recommended Workflow
+```bash
+# User will manually handle git operations:
+git add .
+git commit -m "feat: implement new feature with proper description"
+git push origin main
 ```
 
