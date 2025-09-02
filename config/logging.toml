@@ -1,61 +1,26 @@
-# DMP 风控系统日志配置
+# DMP Logging Configuration
+# High-Performance Real-time Risk Control System
 
-[logging]
-# 日志级别: FATAL, ERROR, INFO, DEBUG
-level = "INFO"
-
-# 日志格式: YYYY-MM-DD hh:mm:ss:ms
+[global]
+level = "info"
 pattern = "[%Y-%m-%d %H:%M:%S.%f] [%l] [%s:%#] [%!] %v"
-flush_level = "ERROR"
-flush_interval_seconds = 3
+flush_interval_ms = 100
 
-[sinks]
-# 控制台输出
-[sinks.console]
+[console]
 enabled = true
-type = "stdout_color_sink"
-pattern = "[%Y-%m-%d %H:%M:%S.%f] [%^%l%$] [%s:%#] %v"
+level = "info"
+pattern = "[%Y-%m-%d %H:%M:%S.%f] [%l] [%s:%#] [%!] %v"
 
-# 文件输出 - 主日志
-[sinks.file]
+[file]
 enabled = true
-type = "rotating_file_sink"
-filename = "logs/dmp_server.log"
+level = "info"
+filename = "logs/dmp.log"
 max_size_mb = 100
 max_files = 10
-pattern = "[%Y-%m-%d %H:%M:%S.%f] [%l] [%s:%#] [%!] [%t] %v"
+rotation_hour = 0
+rotation_minute = 0
 
-# 文件输出 - 错误日志
-[sinks.error_file]
-enabled = true
-type = "rotating_file_sink"
-filename = "logs/dmp_error.log"
-max_size_mb = 50
-max_files = 5
-pattern = "[%Y-%m-%d %H:%M:%S.%f] [%l] [%s:%#] [%!] [%t] %v"
-level = "ERROR"
-
-# 文件输出 - 审计日志
-[sinks.audit_file]
-enabled = true
-type = "daily_file_sink"
-filename = "logs/dmp_audit.log"
-hour = 0
-minute = 0
-pattern = "[%Y-%m-%d %H:%M:%S.%f] [AUDIT] [%s:%#] [%!] [%t] %v"
-
-[performance]
-# 异步日志配置
-async_queue_size = 8192
-thread_pool_size = 1
-overflow_policy = "block"
-
-# 日志缓冲区配置
-buffer_size = 4096
-auto_flush = true
-
-[trace]
-# 全局唯一 trace ID 配置
-enable_trace_id = true
-trace_id_header = "X-Trace-ID"
-generate_trace_id = true
+[async]
+queue_size = 8192
+threads = 2
+flush_interval_ms = 100

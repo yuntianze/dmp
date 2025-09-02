@@ -1,10 +1,3 @@
-/**
- * @file main.cpp
- * @brief Main entry point for DMP risk control system (Phase 1 - Simplified)
- * @author Stan Jiang
- * @date 2025-08-28
- */
-
 #include <iostream>
 #include <memory>
 #include <signal.h>

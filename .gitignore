@@ -89,6 +89,5 @@ CTestTestfile.cmake
 DartConfiguration.tcl
 Testing/
 
-# 第三方库源码（不提交源码，只提交编译后的库）
-third_party/src/
-third_party/build/
+# 第三方库（完全不提交，用户需要自行构建）
+third_party/

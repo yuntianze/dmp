@@ -103,6 +103,10 @@ target_include_directories(phmap INTERFACE "${THIRD_PARTY_ROOT}/include")
 add_library(tomlplusplus INTERFACE)
 target_include_directories(tomlplusplus INTERFACE "${THIRD_PARTY_ROOT}/include")
 
+# ExprTk 库 - Header-only
+add_library(exprtk INTERFACE)
+target_include_directories(exprtk INTERFACE "${THIRD_PARTY_SRC}/exprtk")
+
 # ============================================================================
 # 可选依赖 - ONNX Runtime
 # ============================================================================
@@ -229,6 +233,7 @@ target_link_libraries(dmp_server PRIVATE
     simdjson::simdjson
     phmap
     tomlplusplus
+    exprtk                 # ExprTk 表达式引擎
     simple_metrics         # 简化metrics库
     ${HYPERSCAN_LIBRARIES}
     ${ONNXRUNTIME_LIBRARIES}

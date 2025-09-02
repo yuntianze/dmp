@@ -29,6 +29,7 @@ target_link_libraries(dmp_core PUBLIC
     simdjson::simdjson
     phmap                  # parallel-hashmap
     tomlplusplus          # toml++ 库
+    exprtk                # ExprTk 表达式引擎
     simple_metrics        # 简化metrics库
     ${HYPERSCAN_LIBRARIES}
     ${ONNXRUNTIME_LIBRARIES}

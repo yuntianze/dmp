@@ -22,12 +22,14 @@ alwaysApply: false
 ## Google C++ Comment Style Guidelines
 
 ### File Headers
+只有 .hpp 和 .h 文件需要文件头注释，.cpp 文件无需文件头注释。
+
 ```cpp
 /**
  * @file transaction.hpp
  * @brief Core transaction data structures for DMP risk control system
- * @author DMP Team
- * @date 2024
+ * @author Stan Jiang
+ * @date 2025-08-28
  */
 ```
 

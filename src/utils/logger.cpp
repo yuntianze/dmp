@@ -1,10 +1,3 @@
-/**
- * @file logger.cpp
- * @brief Implementation of unified logging system
- * @author Stan Jiang
- * @date 2025-08-28
- */
-
 #include "utils/logger.hpp"
 #include "common/config.hpp"
 #include <spdlog/cfg/env.h>
